@@ -9,16 +9,16 @@
 <table>
     <tr>
         <th>Friend</th>
-        <th>1 Week out</th>
-        <th>2 Weeks out</th>
-        <th>3 Weeks out</th>
+        {% for date_pair in date_pairs %}
+            <th class="date-headers">{{date_pair[0]}} - {{date_pair[1]}}</td>
+        {% endfor %}
     </tr>
     {% for friend in friends %}
         <tr data-airport={{friend['airport']}}>
-            <td>{{ friend['name'] }}  &ndash; {{friend['airport']}}</td>
-            <td data-index="0"></td>
-            <td data-index="1"></td>
-            <td data-index="2"}></td>
+            <td class="name">{{ friend['name'] }}  &ndash; {{friend['airport']}}</td>
+            {% for date_pair in date_pairs %}
+                <td class="price" data-index={{loop.index - 1}}></td>
+            {% endfor %}
         </tr>
     {% endfor %}
 </table>
