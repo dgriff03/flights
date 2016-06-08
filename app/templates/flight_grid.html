@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+{% block head %}
+<script src="{{ url_for('static', filename='flight_grid.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='flight_grid.css') }}">
+{% endblock %}
+{% block body %}
+<h1>FLIGHT GRID</h1>
+<table>
+    <tr>
+        <th>Friend</th>
+        <th>1 Week out</th>
+        <th>2 Weeks out</th>
+        <th>3 Weeks out</th>
+    </tr>
+    {% for friend in friends %}
+        <tr data-airport={{friend['airport']}}>
+            <td>{{ friend['name'] }}  &ndash; {{friend['airport']}}</td>
+            <td data-index="0"></td>
+            <td data-index="1"></td>
+            <td data-index="2"}></td>
+        </tr>
+    {% endfor %}
+</table>
+<div id="airport-codes" style="display:none;">
+{% for airport in airports %}
+    <span>{{airport}}</span>
+{% endfor %}
+</div>
+{% endblock %}
